@@ -1,7 +1,10 @@
 import Logo from '../ui/logo';
 import LoginForm from '../ui/login-form';
+import { GET } from '../lib/data';
 
-export default function LoginPage() {
+export default async function LoginPage() {
+    // const data = await GET();
+    // console.log("🚀 ~ LoginPage ~ data:", data)
     return (
         <main className="flex items-center justify-center md:h-screen">
             <div className="relative mx-auto flex w-full max-w-[400px] flex-col space-y-2.5 p-4 md:-mt-32">

@@ -1,9 +1,26 @@
-const staff = [{ "staff_id": 1, "first_name": "Mike", "last_name": "Hillyer", "address_id": 3, "email": "Mike.Hillyer@sakilastaff.com", "store_id": 1, "active": true, "username": "Mike", "password": "8cb2237d0679ca88db6464eac60da96345513964", "last_update": "2006-05-16T16:13:11.79328", "picture": "\\x89504e470d0a5a0a" },
-{ "staff_id": 2, "first_name": "Jon", "last_name": "Stephens", "address_id": 4, "email": "Jon.Stephens@sakilastaff.com", "store_id": 2, "active": true, "username": "Jon", "password": "8cb2237d0679ca88db6464eac60da96345513964", "last_update": "2006-05-16T16:13:11.79328", "picture": null }]
-const store = [{ "store_id": 1, "manager_staff_id": 1, "address_id": 1, "last_update": "2006-02-15T09:57:12" },
-{ "store_id": 2, "manager_staff_id": 2, "address_id": 2, "last_update": "2006-02-15T09:57:12" }]
+import { sql } from "@vercel/postgres";
+import { NextResponse } from 'next/server';
+// export const login = async () => {
+//   try {
 
-module.exports = {
-  staff,
-  store
+//     console.log("🚀 ~ login ~ data:", process.env.POSTGRES_URL)
+
+
+//     const res = await sql`SELECT * FROM admin`
+
+//     console.log("🚀 ~ login ~ res:", res)
+//   } catch (error) {
+//     console.log("🚀 ~ login ~ error:", error)
+
+//   }
+// }
+
+export async function GET(request) {
+  try {
+    const { rows } = await sql`SELECT * FROM admin`;
+    console.log("🚀 ~ GET ~ rows:", rows)
+    return NextResponse.json({ rows }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error }, { status: 500 });
+  }
 }
